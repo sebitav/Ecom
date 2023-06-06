@@ -1,0 +1,1 @@
+[{"title":"Polo de rayas","description":"Polo de algodón en tonos rojos y blancos con cuello en V.","price":19.99,"thumbnail":"https://example.com/polo-rayas.jpg","code":"PL5001","stock":15,"id":1}]

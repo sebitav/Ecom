@@ -1,0 +1,43 @@
+[
+    {
+      "id": 1,
+      "name": "Camisa de algodón",
+      "price": 20.99,
+      "category": "Camisas",
+      "description": "Camisa de manga corta de algodón 100% con corte clásico",
+      "image": "https://example.com/camisa-algodon.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Pantalón vaquero",
+      "price": 34.99,
+      "category": "Pantalones",
+      "description": "Pantalón vaquero de corte recto y tiro medio",
+      "image": "https://example.com/pantalon-vaquero.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Vestido de verano",
+      "price": 45.99,
+      "category": "Vestidos",
+      "description": "Vestido de verano con estampado floral y corte amplio",
+      "image": "https://example.com/vestido-verano.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Sudadera con capucha",
+      "price": 29.99,
+      "category": "Sudaderas",
+      "description": "Sudadera con capucha y estampado delantero",
+      "image": "https://example.com/sudadera-capucha.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Blazer",
+      "price": 89.99,
+      "category": "Chaquetas",
+      "description": "Blazer de corte clásico con botones en la parte delantera",
+      "image": "https://example.com/blazer.jpg"
+    }
+  ]
+  
