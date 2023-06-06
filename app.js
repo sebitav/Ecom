@@ -5,6 +5,11 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const GitHubStrategy = require('passport-github').Strategy;
+const bcrypt = require('bcrypt');
+const User = require('./models/userModels');
 const productRoutes = require('./routes/productRoutes');
 const cartRoutes = require('./routes/cartRoutes');
 const viewsRoutes = require('./routes/views');
@@ -25,6 +30,50 @@ app.set('views', './views');
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Configuración de Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(
+  new LocalStrategy((username, password, done) => {
+    User.findOne({ email: username }, (err, user) => {
+      if (err) return done(err);
+      if (!user) return done(null, false, { message: 'Usuario no encontrado' });
+
+      bcrypt.compare(password, user.password, (err, res) => {
+        if (err) return done(err);
+        if (res === false) return done(null, false, { message: 'Contraseña incorrecta' });
+
+        return done(null, user);
+      });
+    });
+  })
+);
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.findById(id, (err, user) => {
+    done(err, user);
+  });
+});
+
+passport.use(
+  new GitHubStrategy(
+    {
+      clientID: '72394d4806f22edca924',
+      clientSecret: '6519f8d7956f86e298054929ad6c7f9e800c2161',
+      callbackURL: 'http://localhost:8080/auth/github/callback'
+    },
+    (accessToken, refreshToken, profile, done) => {
+      // Lógica para autenticación y creación de usuarios con GitHub
+      // ...
+    }
+  )
+);
 
 // Conexión a MongoDB
 mongoose
